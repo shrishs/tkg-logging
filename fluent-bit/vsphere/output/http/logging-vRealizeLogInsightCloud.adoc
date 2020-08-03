@@ -1,11 +1,11 @@
 ## Configure vRealizeLogInsightCloud
-. Log in to vRealize Log Insight Cloud
-. Select Tanzu Kubernetes Grid from the Applications
+*  Log in to vRealize Log Insight Cloud
+*  Select Tanzu Kubernetes Grid from the Applications
 image:loginvrealize.png[loginvrealize.png]
-. By default vRealizeLogInsightCloud generates  fluentd config(See step 2)
+*  By default vRealizeLogInsightCloud generates  fluentd config(See step 2)
 image:vrli-tkg.png[vrli-tkg.png]
-. Make note of environment and log_type defined.It is used for defining filter-record.conf in configmap.
-. Generate vRealize Log Insight Cloud API Key as described in step1.Make note of url and key
+*  Take note of environment and log_type defined.It is used for defining filter-record.conf in configmap.
+*  Generate vRealize Log Insight Cloud API Key as described in step1.Take note of url and key
 image:vrli-generatekey.png[vrli-generatekey.png]
 
 ## Installing Fluentbit
@@ -108,7 +108,7 @@ kubectl logs -l k8s-app=fluent-bit-logging -n tanzu-system-logging
 [2020/08/02 17:10:17] [ info] [out_http] data.mgmt.cloud.vmware.com:443, HTTP status=200 {}
 [2020/08/02 17:10:17] [ info] [out_http] data.mgmt.cloud.vmware.com:443, HTTP status=200 {}
 ---
-. Create a pod with the following definition.
+*  Create a pod with the following definition.
 [source,yaml]
 apiVersion: v1
 kind: Pod
@@ -121,11 +121,11 @@ spec:
     args: [/bin/sh, -c,
     'i=0; while true; do echo "Testing OK:Logs getting printed to vRealize Log Insight Cloud: $i: $(date)"; i=$((i+1)); sleep 1; done']
 
-. Log in to vRealize Log Insight Cloud
-. Make sure ,logs are displayed in Logs tab.
+*  Log in to vRealize Log Insight Cloud
+*  Make sure ,logs are displayed in Logs tab.
 image:vrli-log.png[vrli-log.png]
-. Create a filter on pod name and verify the above text
+*  Create a filter on pod name and verify the above text
 image:vrli-pod-log.png[vrli-pod-log.png]
-. verify logs for systemd 
+*  Verify logs for systemd 
 image:vrli-systemd.png[vrli-systemd.png]
 
