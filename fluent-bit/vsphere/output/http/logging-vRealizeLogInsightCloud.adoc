@@ -81,7 +81,7 @@ specify the following output in fluent-bit-configmap.yaml
         Host              data.mgmt.cloud.vmware.com
         Port              443
         URI               /le-mans/v1/streams/ingestion-pipeline-stream
-        Header            Authorization Bearer MgOslWUBx18NnrPIX3lsJPCw6CyvM6JE
+        Header            Authorization Bearer ABCDEFGH123393nrPIX3lsJPCw6CyvM6JE
         Format            json
         tls               On
         tls.verify        Off
