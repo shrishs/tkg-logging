@@ -1,0 +1,329 @@
+{
+  "took" : 4,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 1,
+    "successful" : 1,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 10000,
+      "relation" : "gte"
+    },
+    "max_score" : 1.0,
+    "hits" : [
+      {
+        "_index" : "logstash-2020.07.08",
+        "_type" : "flb_type",
+        "_id" : "YdoBLnMB7JRhqJqJr9Zo",
+        "_score" : 1.0,
+        "_source" : {
+          "@timestamp" : "2020-07-08T10:38:47.940Z",
+          "log" : "2020-07-07T18:17:30.154366159Z stderr F I0707 18:17:30.154264       1 main.go:53] Sending probe request to CSI driver \"csi.vsphere.vmware.com\"",
+          "kubernetes" : {
+            "pod_name" : "vsphere-csi-controller-0",
+            "namespace_name" : "kube-system",
+            "pod_id" : "741eeafe-4a9d-4e71-918c-c2b156c8d72a",
+            "labels" : {
+              "app" : "vsphere-csi-controller",
+              "controller-revision-hash" : "vsphere-csi-controller-864dc9d4d9",
+              "role" : "vsphere-csi",
+              "statefulset_kubernetes_io/pod-name" : "vsphere-csi-controller-0"
+            },
+            "annotations" : {
+              "cni_projectcalico_org/podIP" : "100.108.164.132/32",
+              "cni_projectcalico_org/podIPs" : "100.108.164.132/32"
+            },
+            "host" : "my-cluster-control-plane-56r47",
+            "container_name" : "liveness-probe",
+            "docker_id" : "cb1fed399dcb19cf5fdcb026bda0d75bc5caa5e6e3b07e960bcacff6b8f8448b",
+            "container_hash" : "b154c2e1ec44b17ed4b32b1313d96670812e67819a7ad6474f90401d70b44dc2"
+          },
+          "tkg_cluster" : "my_cluster",
+          "tkg_instance" : "my_cluster"
+        }
+      },
+      {
+        "_index" : "logstash-2020.07.08",
+        "_type" : "flb_type",
+        "_id" : "YtoBLnMB7JRhqJqJr9Zo",
+        "_score" : 1.0,
+        "_source" : {
+          "@timestamp" : "2020-07-08T10:38:47.940Z",
+          "log" : "2020-07-07T18:17:30.154809664Z stderr F I0707 18:17:30.154748       1 main.go:71] Health check succeeded",
+          "kubernetes" : {
+            "pod_name" : "vsphere-csi-controller-0",
+            "namespace_name" : "kube-system",
+            "pod_id" : "741eeafe-4a9d-4e71-918c-c2b156c8d72a",
+            "labels" : {
+              "app" : "vsphere-csi-controller",
+              "controller-revision-hash" : "vsphere-csi-controller-864dc9d4d9",
+              "role" : "vsphere-csi",
+              "statefulset_kubernetes_io/pod-name" : "vsphere-csi-controller-0"
+            },
+            "annotations" : {
+              "cni_projectcalico_org/podIP" : "100.108.164.132/32",
+              "cni_projectcalico_org/podIPs" : "100.108.164.132/32"
+            },
+            "host" : "my-cluster-control-plane-56r47",
+            "container_name" : "liveness-probe",
+            "docker_id" : "cb1fed399dcb19cf5fdcb026bda0d75bc5caa5e6e3b07e960bcacff6b8f8448b",
+            "container_hash" : "b154c2e1ec44b17ed4b32b1313d96670812e67819a7ad6474f90401d70b44dc2"
+          },
+          "tkg_cluster" : "my_cluster",
+          "tkg_instance" : "my_cluster"
+        }
+      },
+      {
+        "_index" : "logstash-2020.07.08",
+        "_type" : "flb_type",
+        "_id" : "Y9oBLnMB7JRhqJqJr9Zo",
+        "_score" : 1.0,
+        "_source" : {
+          "@timestamp" : "2020-07-08T10:38:47.940Z",
+          "log" : "2020-07-07T18:17:35.154803282Z stderr F I0707 18:17:35.154425       1 main.go:53] Sending probe request to CSI driver \"csi.vsphere.vmware.com\"",
+          "kubernetes" : {
+            "pod_name" : "vsphere-csi-controller-0",
+            "namespace_name" : "kube-system",
+            "pod_id" : "741eeafe-4a9d-4e71-918c-c2b156c8d72a",
+            "labels" : {
+              "app" : "vsphere-csi-controller",
+              "controller-revision-hash" : "vsphere-csi-controller-864dc9d4d9",
+              "role" : "vsphere-csi",
+              "statefulset_kubernetes_io/pod-name" : "vsphere-csi-controller-0"
+            },
+            "annotations" : {
+              "cni_projectcalico_org/podIP" : "100.108.164.132/32",
+              "cni_projectcalico_org/podIPs" : "100.108.164.132/32"
+            },
+            "host" : "my-cluster-control-plane-56r47",
+            "container_name" : "liveness-probe",
+            "docker_id" : "cb1fed399dcb19cf5fdcb026bda0d75bc5caa5e6e3b07e960bcacff6b8f8448b",
+            "container_hash" : "b154c2e1ec44b17ed4b32b1313d96670812e67819a7ad6474f90401d70b44dc2"
+          },
+          "tkg_cluster" : "my_cluster",
+          "tkg_instance" : "my_cluster"
+        }
+      },
+      {
+        "_index" : "logstash-2020.07.08",
+        "_type" : "flb_type",
+        "_id" : "ZNoBLnMB7JRhqJqJr9Zo",
+        "_score" : 1.0,
+        "_source" : {
+          "@timestamp" : "2020-07-08T10:38:47.940Z",
+          "log" : "2020-07-07T18:17:35.15492377Z stderr F I0707 18:17:35.154855       1 main.go:71] Health check succeeded",
+          "kubernetes" : {
+            "pod_name" : "vsphere-csi-controller-0",
+            "namespace_name" : "kube-system",
+            "pod_id" : "741eeafe-4a9d-4e71-918c-c2b156c8d72a",
+            "labels" : {
+              "app" : "vsphere-csi-controller",
+              "controller-revision-hash" : "vsphere-csi-controller-864dc9d4d9",
+              "role" : "vsphere-csi",
+              "statefulset_kubernetes_io/pod-name" : "vsphere-csi-controller-0"
+            },
+            "annotations" : {
+              "cni_projectcalico_org/podIP" : "100.108.164.132/32",
+              "cni_projectcalico_org/podIPs" : "100.108.164.132/32"
+            },
+            "host" : "my-cluster-control-plane-56r47",
+            "container_name" : "liveness-probe",
+            "docker_id" : "cb1fed399dcb19cf5fdcb026bda0d75bc5caa5e6e3b07e960bcacff6b8f8448b",
+            "container_hash" : "b154c2e1ec44b17ed4b32b1313d96670812e67819a7ad6474f90401d70b44dc2"
+          },
+          "tkg_cluster" : "my_cluster",
+          "tkg_instance" : "my_cluster"
+        }
+      },
+      {
+        "_index" : "logstash-2020.07.08",
+        "_type" : "flb_type",
+        "_id" : "ZdoBLnMB7JRhqJqJr9Zo",
+        "_score" : 1.0,
+        "_source" : {
+          "@timestamp" : "2020-07-08T10:38:47.940Z",
+          "log" : "2020-07-07T18:17:40.154297969Z stderr F I0707 18:17:40.154201       1 main.go:53] Sending probe request to CSI driver \"csi.vsphere.vmware.com\"",
+          "kubernetes" : {
+            "pod_name" : "vsphere-csi-controller-0",
+            "namespace_name" : "kube-system",
+            "pod_id" : "741eeafe-4a9d-4e71-918c-c2b156c8d72a",
+            "labels" : {
+              "app" : "vsphere-csi-controller",
+              "controller-revision-hash" : "vsphere-csi-controller-864dc9d4d9",
+              "role" : "vsphere-csi",
+              "statefulset_kubernetes_io/pod-name" : "vsphere-csi-controller-0"
+            },
+            "annotations" : {
+              "cni_projectcalico_org/podIP" : "100.108.164.132/32",
+              "cni_projectcalico_org/podIPs" : "100.108.164.132/32"
+            },
+            "host" : "my-cluster-control-plane-56r47",
+            "container_name" : "liveness-probe",
+            "docker_id" : "cb1fed399dcb19cf5fdcb026bda0d75bc5caa5e6e3b07e960bcacff6b8f8448b",
+            "container_hash" : "b154c2e1ec44b17ed4b32b1313d96670812e67819a7ad6474f90401d70b44dc2"
+          },
+          "tkg_cluster" : "my_cluster",
+          "tkg_instance" : "my_cluster"
+        }
+      },
+      {
+        "_index" : "logstash-2020.07.08",
+        "_type" : "flb_type",
+        "_id" : "ZtoBLnMB7JRhqJqJr9Zo",
+        "_score" : 1.0,
+        "_source" : {
+          "@timestamp" : "2020-07-08T10:38:47.940Z",
+          "log" : "2020-07-07T18:17:40.154778403Z stderr F I0707 18:17:40.154719       1 main.go:71] Health check succeeded",
+          "kubernetes" : {
+            "pod_name" : "vsphere-csi-controller-0",
+            "namespace_name" : "kube-system",
+            "pod_id" : "741eeafe-4a9d-4e71-918c-c2b156c8d72a",
+            "labels" : {
+              "app" : "vsphere-csi-controller",
+              "controller-revision-hash" : "vsphere-csi-controller-864dc9d4d9",
+              "role" : "vsphere-csi",
+              "statefulset_kubernetes_io/pod-name" : "vsphere-csi-controller-0"
+            },
+            "annotations" : {
+              "cni_projectcalico_org/podIP" : "100.108.164.132/32",
+              "cni_projectcalico_org/podIPs" : "100.108.164.132/32"
+            },
+            "host" : "my-cluster-control-plane-56r47",
+            "container_name" : "liveness-probe",
+            "docker_id" : "cb1fed399dcb19cf5fdcb026bda0d75bc5caa5e6e3b07e960bcacff6b8f8448b",
+            "container_hash" : "b154c2e1ec44b17ed4b32b1313d96670812e67819a7ad6474f90401d70b44dc2"
+          },
+          "tkg_cluster" : "my_cluster",
+          "tkg_instance" : "my_cluster"
+        }
+      },
+      {
+        "_index" : "logstash-2020.07.08",
+        "_type" : "flb_type",
+        "_id" : "Z9oBLnMB7JRhqJqJr9Zo",
+        "_score" : 1.0,
+        "_source" : {
+          "@timestamp" : "2020-07-08T10:38:47.940Z",
+          "log" : "2020-07-07T18:17:45.154785458Z stderr F I0707 18:17:45.154675       1 main.go:53] Sending probe request to CSI driver \"csi.vsphere.vmware.com\"",
+          "kubernetes" : {
+            "pod_name" : "vsphere-csi-controller-0",
+            "namespace_name" : "kube-system",
+            "pod_id" : "741eeafe-4a9d-4e71-918c-c2b156c8d72a",
+            "labels" : {
+              "app" : "vsphere-csi-controller",
+              "controller-revision-hash" : "vsphere-csi-controller-864dc9d4d9",
+              "role" : "vsphere-csi",
+              "statefulset_kubernetes_io/pod-name" : "vsphere-csi-controller-0"
+            },
+            "annotations" : {
+              "cni_projectcalico_org/podIP" : "100.108.164.132/32",
+              "cni_projectcalico_org/podIPs" : "100.108.164.132/32"
+            },
+            "host" : "my-cluster-control-plane-56r47",
+            "container_name" : "liveness-probe",
+            "docker_id" : "cb1fed399dcb19cf5fdcb026bda0d75bc5caa5e6e3b07e960bcacff6b8f8448b",
+            "container_hash" : "b154c2e1ec44b17ed4b32b1313d96670812e67819a7ad6474f90401d70b44dc2"
+          },
+          "tkg_cluster" : "my_cluster",
+          "tkg_instance" : "my_cluster"
+        }
+      },
+      {
+        "_index" : "logstash-2020.07.08",
+        "_type" : "flb_type",
+        "_id" : "aNoBLnMB7JRhqJqJr9Zo",
+        "_score" : 1.0,
+        "_source" : {
+          "@timestamp" : "2020-07-08T10:38:47.940Z",
+          "log" : "2020-07-07T18:17:45.155630947Z stderr F I0707 18:17:45.155572       1 main.go:71] Health check succeeded",
+          "kubernetes" : {
+            "pod_name" : "vsphere-csi-controller-0",
+            "namespace_name" : "kube-system",
+            "pod_id" : "741eeafe-4a9d-4e71-918c-c2b156c8d72a",
+            "labels" : {
+              "app" : "vsphere-csi-controller",
+              "controller-revision-hash" : "vsphere-csi-controller-864dc9d4d9",
+              "role" : "vsphere-csi",
+              "statefulset_kubernetes_io/pod-name" : "vsphere-csi-controller-0"
+            },
+            "annotations" : {
+              "cni_projectcalico_org/podIP" : "100.108.164.132/32",
+              "cni_projectcalico_org/podIPs" : "100.108.164.132/32"
+            },
+            "host" : "my-cluster-control-plane-56r47",
+            "container_name" : "liveness-probe",
+            "docker_id" : "cb1fed399dcb19cf5fdcb026bda0d75bc5caa5e6e3b07e960bcacff6b8f8448b",
+            "container_hash" : "b154c2e1ec44b17ed4b32b1313d96670812e67819a7ad6474f90401d70b44dc2"
+          },
+          "tkg_cluster" : "my_cluster",
+          "tkg_instance" : "my_cluster"
+        }
+      },
+      {
+        "_index" : "logstash-2020.07.08",
+        "_type" : "flb_type",
+        "_id" : "adoBLnMB7JRhqJqJr9Zo",
+        "_score" : 1.0,
+        "_source" : {
+          "@timestamp" : "2020-07-08T10:38:47.940Z",
+          "log" : "2020-07-07T18:17:50.154314543Z stderr F I0707 18:17:50.154211       1 main.go:53] Sending probe request to CSI driver \"csi.vsphere.vmware.com\"",
+          "kubernetes" : {
+            "pod_name" : "vsphere-csi-controller-0",
+            "namespace_name" : "kube-system",
+            "pod_id" : "741eeafe-4a9d-4e71-918c-c2b156c8d72a",
+            "labels" : {
+              "app" : "vsphere-csi-controller",
+              "controller-revision-hash" : "vsphere-csi-controller-864dc9d4d9",
+              "role" : "vsphere-csi",
+              "statefulset_kubernetes_io/pod-name" : "vsphere-csi-controller-0"
+            },
+            "annotations" : {
+              "cni_projectcalico_org/podIP" : "100.108.164.132/32",
+              "cni_projectcalico_org/podIPs" : "100.108.164.132/32"
+            },
+            "host" : "my-cluster-control-plane-56r47",
+            "container_name" : "liveness-probe",
+            "docker_id" : "cb1fed399dcb19cf5fdcb026bda0d75bc5caa5e6e3b07e960bcacff6b8f8448b",
+            "container_hash" : "b154c2e1ec44b17ed4b32b1313d96670812e67819a7ad6474f90401d70b44dc2"
+          },
+          "tkg_cluster" : "my_cluster",
+          "tkg_instance" : "my_cluster"
+        }
+      },
+      {
+        "_index" : "logstash-2020.07.08",
+        "_type" : "flb_type",
+        "_id" : "atoBLnMB7JRhqJqJr9Zo",
+        "_score" : 1.0,
+        "_source" : {
+          "@timestamp" : "2020-07-08T10:38:47.940Z",
+          "log" : "2020-07-07T18:17:50.154774997Z stderr F I0707 18:17:50.154712       1 main.go:71] Health check succeeded",
+          "kubernetes" : {
+            "pod_name" : "vsphere-csi-controller-0",
+            "namespace_name" : "kube-system",
+            "pod_id" : "741eeafe-4a9d-4e71-918c-c2b156c8d72a",
+            "labels" : {
+              "app" : "vsphere-csi-controller",
+              "controller-revision-hash" : "vsphere-csi-controller-864dc9d4d9",
+              "role" : "vsphere-csi",
+              "statefulset_kubernetes_io/pod-name" : "vsphere-csi-controller-0"
+            },
+            "annotations" : {
+              "cni_projectcalico_org/podIP" : "100.108.164.132/32",
+              "cni_projectcalico_org/podIPs" : "100.108.164.132/32"
+            },
+            "host" : "my-cluster-control-plane-56r47",
+            "container_name" : "liveness-probe",
+            "docker_id" : "cb1fed399dcb19cf5fdcb026bda0d75bc5caa5e6e3b07e960bcacff6b8f8448b",
+            "container_hash" : "b154c2e1ec44b17ed4b32b1313d96670812e67819a7ad6474f90401d70b44dc2"
+          },
+          "tkg_cluster" : "my_cluster",
+          "tkg_instance" : "my_cluster"
+        }
+      }
+    ]
+  }
+}

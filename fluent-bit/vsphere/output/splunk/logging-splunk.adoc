@@ -1,0 +1,111 @@
+## Installing Splunk
+
+https://docs.splunk.com/Documentation/Splunk/8.0.4/Installation/DeployandrunSplunkEnterpriseinsideDockercontainers
+
+Another helpful doc
+https://medium.com/faun/logging-in-kubernetes-using-splunk-c2785948fdc0 
+
+
+**Starting as Docker container**
+docker run -d -p 8000:8000 -e 'SPLUNK_START_ARGS=--accept-license' -e 'SPLUNK_PASSWORD=Vmware@141075' splunk/splunk:latest
+
+**Starting as Kubernetes Pod**
+
+kubectl create ns splunk
+
+kubectl -n splunk run splunk  --image=splunk/splunk:latest --env=SPLUNK_START_ARGS=--accept-license --env=SPLUNK_PASSWORD=Vmware@141075
+kubectl expose pod splunk --port=8000 --name=splunk-admin -n splunk
+kubectl -n splunk port-forward service/splunk-admin 8000 &
+http://localhost:8000
+
+**Configure Splunk**
+Login with admin/Vmware@141075
+-click on indexes 
+-create new index for events & metrics with default
+- go to data input-->HTTP Event Collector
+-Create New Token-->submit
+-Get your token value --0a7baf78-a608-4ff6-bc68-687e419c2ea3
+-Go to Global setting,make sure it is enabled.Check the port number
+-Default is 8088
+
+Create a service for HTTP Event Collector based on HTTP Port Number in Global Setting
+kubectl expose pod splunk --port=8088 --name=splunk-hec -n splunk
+
+
+
+## Installing Fluentbit
+Install it from binaries and doc from TKG 
+ 
+
+## Output Plugin for Splunk
+
+https://docs.fluentbit.io/manual/pipeline/outputs/splunk
+
+specify the service/port/Splunk_Token in tkg-extensions-v1.0.0/logging/fluent-bit/vsphere/output/splunk/04-fluent-bit-configmap.yaml
+
+  input-kubernetes.conf: |
+    [INPUT]
+        Name              tail
+        Tag               kube.*
+        Path              /var/log/containers/*.log
+        Parser            docker
+        DB                /var/log/flb_kube.db
+        Mem_Buf_Limit     5MB
+        Skip_Long_Lines   On
+        Refresh_Interval  10
+ 
+  input-kubernetes.conf: |
+    [INPUT]
+        Name              systemd
+        Tag               host.*
+        Path              /run/log/journal
+        Parser            docker
+        DB                /var/log/flb_kube.db
+        Mem_Buf_Limit     5MB
+        Skip_Long_Lines   On
+** Above one can also specify "Systemd_Filter  _SYSTEMD_UNIT=docker.service" in case of any specific service 
+  output-splunk.conf: |
+    [OUTPUT]
+        Name           splunk
+        Match          *
+        Host           splunk-hec.splunk.svc.cluster.local
+        Port	       8088
+        Splunk_Token   0a7baf78-a608-4ff6-bc68-687e419c2ea3
+        TLS            On
+        TLS.Verify     Off
+
+kubectl apply -f tkg-extensions-v1.0.0/logging/fluent-bit/vsphere/output/splunk/04-fluent-bit-configmap.yaml
+kubectl apply -f tkg-extensions-v1.0.0/logging/fluent-bit/vsphere/output/splunk/05-fluent-bit-ds.yaml
+
+
+kubectl delete -f tkg-extensions-v1.0.0/logging/fluent-bit/vsphere/output/splunk/04-fluent-bit-configmap.yaml
+kubectl delete -f tkg-extensions-v1.0.0/logging/fluent-bit/vsphere/output/splunk/05-fluent-bit-ds.yaml
+
+kubectl logs -l k8s-app=fluent-bit-logging -n tanzu-system-logging
+270e87cd-3460-459c-97f0-e37f24004779
+---
+[2020/07/09 17:47:47] [ info] [filter_kube] API server connectivity OK
+[2020/07/09 17:47:48] [ info] [http_server] listen iface=0.0.0.0 tcp_port=2020
+[2020/07/09 17:47:48] [ info] [sp] stream processor started
+---
+
+
+  output-splunk-kube.conf: |
+    [OUTPUT]
+        Name           splunk-kube
+        Match          kube.*
+        Host           splunk-hec.splunk.svc.cluster.local
+        Port           8088
+        Splunk_Token   3035f5c1-ce97-44be-a8fe-ab3c74017b0c
+        TLS            On
+        TLS.Verify     Off
+
+
+## Testing connection
+
+-- http://localhost:8000
+
+-- Go to App:Search & Reporting
+
+-- Search for index="events" 
+

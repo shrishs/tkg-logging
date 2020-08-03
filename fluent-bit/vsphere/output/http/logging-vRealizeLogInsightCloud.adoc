@@ -1,0 +1,131 @@
+## Configure vRealizeLogInsightCloud
+. Log in to vRealize Log Insight Cloud
+. Select Tanzu Kubernetes Grid from the Applications
+image:loginvrealize.png[loginvrealize.png]
+. By default vRealizeLogInsightCloud generates  fluentd config(See step 2)
+image:vrli-tkg.png[vrli-tkg.png]
+. Make note of environment and log_type defined.It is used for defining filter-record.conf in configmap.
+. Generate vRealize Log Insight Cloud API Key as described in step1.Make note of url and key
+image:vrli-generatekey.png[vrli-generatekey.png]
+
+## Installing Fluentbit
+Install it from binaries and doc from TKG .
+ 
+## Defining Input to collect and enhance log in configMap
+
+Specify the following input in fluent-bit-configmap.yaml
+
+[source,shell]
+  input-kubernetes.conf: |
+    [INPUT]
+        Name              tail
+        Tag               kube.*
+        Path              /var/log/containers/*.log
+        Parser            docker
+        DB                /var/log/flb_kube.db
+        Mem_Buf_Limit     5MB
+        Skip_Long_Lines   On
+        Refresh_Interval  10 
+  input-journal.conf: |
+    [INPUT]
+        Name              systemd
+        Tag               journal.*
+        Path              /run/log/journal
+        Parser            docker
+        DB                /var/log/flb_kube.db
+        Mem_Buf_Limit     5MB
+        Skip_Long_Lines   On
+  filter-record.conf: |
+    [FILTER]
+        Name                record_modifier
+        Match               *
+        Record environment  tanzu_k8s_grid
+        Record log_type     kubernetes
+        Record tkg_cluster  k8s_grid_vRLi
+        Record tkg_instance k8s_grid_vRLi
+
+** Above it's possible to specify "Systemd_Filter  _SYSTEMD_UNIT=docker.service" in case of any specific service 
+
+
+## Make sure all Input Path specified above are defined in fluent-bit-ds.yaml
+
+[source,shell]
+      volumes:
+        - name: varlog
+          hostPath:
+            path: /var/log
+        - name: journal
+          hostPath:
+            path: /run/log/journal
+
+[source,shell]
+      volumeMounts:
+        - name: varlog
+          mountPath: /var/log
+        - name: journal
+          mountPath: /run/log/journal
+
+
+
+## Defining Output to forward log in configMap to vRealizeLogInsightCloud
+
+https://docs.fluentbit.io/manual/pipeline/outputs/http
+
+specify the following output in fluent-bit-configmap.yaml
+
+[source,shell]
+  output-http.conf: |
+    [OUTPUT]
+        Name              http
+        Match             *
+        Host              data.mgmt.cloud.vmware.com
+        Port              443
+        URI               /le-mans/v1/streams/ingestion-pipeline-stream
+        Header            Authorization Bearer MgOslWUBx18NnrPIX3lsJPCw6CyvM6JE
+        Format            json
+        tls               On
+        tls.verify        Off
+
+
+[source,shell]
+kubectl apply -f tkg-extensions-v1.0.0/logging/fluent-bit/vsphere/output/http/04-fluent-bit-configmap.yaml
+kubectl apply -f tkg-extensions-v1.0.0/logging/fluent-bit/vsphere/output/http/05-fluent-bit-ds.yaml
+
+
+
+
+
+## Testing connection
+. Test if above configurations are correct.
+[source,shell]
+kubectl logs -l k8s-app=fluent-bit-logging -n tanzu-system-logging
+---
+[2020/08/02 17:10:12] [ info] [filter_kube] testing connectivity with API server...
+[2020/08/02 17:10:12] [ info] [filter_kube] API server connectivity OK
+[2020/08/02 17:10:12] [ info] [http_server] listen iface=0.0.0.0 tcp_port=2020
+[2020/08/02 17:10:12] [ info] [sp] stream processor started
+[2020/08/02 17:10:17] [ info] [out_http] data.mgmt.cloud.vmware.com:443, HTTP status=200 {}
+[2020/08/02 17:10:17] [ info] [out_http] data.mgmt.cloud.vmware.com:443, HTTP status=200 {}
+[2020/08/02 17:10:17] [ info] [out_http] data.mgmt.cloud.vmware.com:443, HTTP status=200 {}
+---
+. Create a pod with the following definition.
+[source,yaml]
+apiVersion: v1
+kind: Pod
+metadata:
+  name: counter
+spec:
+  containers:
+  - name: count
+    image: busybox
+    args: [/bin/sh, -c,
+    'i=0; while true; do echo "Testing OK:Logs getting printed to vRealize Log Insight Cloud: $i: $(date)"; i=$((i+1)); sleep 1; done']
+
+. Log in to vRealize Log Insight Cloud
+. Make sure ,logs are displayed in Logs tab.
+image:vrli-log.png[vrli-log.png]
+. Create a filter on pod name and verify the above text
+image:vrli-pod-log.png[vrli-pod-log.png]
+. verify logs for systemd 
+image:vrli-systemd.png[vrli-systemd.png]
+
